@@ -1,0 +1,50 @@
+## Models ##
+Quizzes {
+    Quiz {
+        name: string
+        datetime: date/time
+        type: [live/online-only]
+        location?: string
+        host: {
+            Person: {
+                name: string
+                email: email/string
+                location: string
+                dob: date/string                
+            }            
+        }
+        
+        rounds {
+            round {
+                questions {
+                    question {
+                        question: string
+                        questionType: [text/multiple-choice/image/audio/video]
+                        imageUrl?: string
+                        choices: [
+                            choice: [a/b/c/d]
+                            freeText: choice
+                        ]
+                        answer: string
+                        correctAnswers: int
+                        incorrectAnswers: int
+                        lastUsed: date/timefg
+                        quickestCorrectAnswer: {
+                            dateTime: date/time
+                            person: Person
+                            location: string
+                        }
+                        quickestWrongAnswer: {
+                            dateTime: date/time
+                            person: Person
+                            location: string
+                        }
+                        points: int
+                        contested: true/false     
+                         
+                    }
+                }
+            }
+        }
+    }
+}

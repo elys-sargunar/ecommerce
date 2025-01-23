@@ -37,7 +37,6 @@ model Order {
  pricePaidInPence  Int
  createdAt DateTime @default(now())
  updatedAt DateTime @updatedAt
- 
  userId String
  productId String 
  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -50,4 +49,13 @@ model DownloadVerification {
  createdAt DateTime @default(now())
  productId String
  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Venue {
+  id       String    @id @default(uuid())
+  name     String
+  location String
+  capacity Int
+  type     String
+  lastUpdated DateTime
 }

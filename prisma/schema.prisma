@@ -57,5 +57,5 @@ model Venue {
   location String
   capacity Int
   type     String
-  lastUpdated DateTime
+  lastUpdated DateTime @default(now())
 }

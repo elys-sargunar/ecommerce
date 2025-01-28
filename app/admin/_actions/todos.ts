@@ -56,6 +56,9 @@ export async function addTodo(prevState: unknown, formData: FormData) {
     redirect("/admin/todos")
 }
 
+const editSchema = addSchema.extend({    
+
+})
 
 export async function updateTodo(id: string, prevState: unknown, formData: FormData) {
     const result = editSchema.safeParse(Object.fromEntries(formData.entries()))

@@ -21,7 +21,7 @@ model Product {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   orders Order[]
-  downloadVerifications DownloadVerification[]
+  downloadVerifications DownloadVerification[]  
 }
 
 model User {
@@ -58,4 +58,15 @@ model Venue {
   capacity Int
   type     String
   lastUpdated DateTime @default(now())
+}
+
+model Todo {
+  id        String      @id @default(uuid())
+  name      String?
+  title     String
+  completed Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  expiresAt DateTime?
+  score Int?
 }

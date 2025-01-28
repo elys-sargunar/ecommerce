@@ -28,7 +28,7 @@ Quizzes {
                         answer: string
                         correctAnswers: int
                         incorrectAnswers: int
-                        lastUsed: date/timefg
+                        lastUsed: date/time
                         quickestCorrectAnswer: {
                             dateTime: date/time
                             person: Person

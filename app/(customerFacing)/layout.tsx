@@ -1,6 +1,5 @@
 import { Nav, NavLink } from "../../components/Nav";
 
-
 export const dynamic = "force-dynamic"
 
 export default function Layout({
@@ -14,6 +13,6 @@ export default function Layout({
             <NavLink href="/products">Products</NavLink>
             <NavLink href="/orders">My Orders</NavLink>
         </Nav>
-        <div className="container my-6 m-auto">{children}</div>
+        <div className="container my-6 m-auto p-4">{children}</div>
     </>
 }

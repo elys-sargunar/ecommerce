@@ -11,9 +11,9 @@ import { Suspense } from "react"
 const getToDos = cache(() => {
     return db.todo.findMany({
         orderBy: { score: "desc"},
-        take: 4
+        take: 9
     })
-}, ["/", "getToDos"])   
+}, ["/", "getToDos"],{ revalidate: 10 })
 
 const getMostPopularProducts = cache(() => {
     return db.product.findMany({
@@ -113,7 +113,7 @@ ProductGridSectionProps) {
 
 async function ToDoSuspense({todosFetcher}:{todosFetcher: () => Promise<Todo[]>}) {
     return (await todosFetcher()).map(todo => (
-        <ToDoCard key={todo.id} id={todo.id} score={todo.score || 0} name={todo.name || "me"} title={todo.title} completed={todo.completed} createdAt={todo.createdAt} updatedAt={todo.updatedAt} expiresAt={todo.expiresAt || undefined} />
+        <ToDoCard key={todo.id} id={todo.id} score={todo.score || 0} title={todo.title} description={todo.description || ""} completed={todo.completed} createdAt={todo.createdAt} updatedAt={todo.updatedAt} expiresAt={todo.expiresAt || undefined} owner={todo.owner || ""} />
     ))
 }
 

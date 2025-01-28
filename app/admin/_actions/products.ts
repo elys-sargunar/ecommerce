@@ -6,8 +6,8 @@ import db from "@/db/db"
 import { notFound, redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 
-const fileSchema = z.instanceof(File, {message: "Required" })
-const imageSchema = fileSchema.refine(file => file.size === 0  || file.type.startsWith("image/"))
+export const fileSchema = z.instanceof(File, {message: "Required" })
+export const imageSchema = fileSchema.refine(file => file.size === 0  || file.type.startsWith("image/"))
 
 const addSchema = z.object({    
     name : z.string().min(1),

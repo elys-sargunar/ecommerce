@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import db from "@/db/db";
 import { CheckCircle2, MoreVertical, XCircle } from "lucide-react";
-import { formatCurrency, formatNumber } from "@/lib/formatters";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ActiveToggleDropdownItem, DeleteDropdownItem } from "./_components/TodoActions";
 import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
@@ -24,8 +23,9 @@ export default function AdminTodosPage() {
 async function TodosTable() {
     const todos = await db.todo.findMany({ select: {
         id: true,
-        name: true,
         title: true,
+        owner: true,
+        description: true,
         completed: true,
         createdAt: true,
         updatedAt: true,
@@ -41,10 +41,11 @@ async function TodosTable() {
     return <Table>
         <TableHeader>
             <TableRow>
+                <TableHead>Title</TableHead>
                 <TableHead className="w-0">
                     <span className="sr-only">Completed</span>
                 </TableHead>
-                <TableHead>Title</TableHead>
+                <TableHead>Description</TableHead>
                 <TableHead>Score</TableHead>
                 <TableHead>Owner</TableHead>
                 <TableHead>Deadline</TableHead>
@@ -56,6 +57,9 @@ async function TodosTable() {
         <TableBody>
             {todos.map(todo => (
                 <TableRow key={todo.id}>
+                    <TableCell>
+                        {todo.title}
+                    </TableCell>
                     <TableCell>
                         {todo.completed ? ( 
                             <>                                
@@ -70,13 +74,13 @@ async function TodosTable() {
                         )}
                     </TableCell>
                     <TableCell>
-                        {todo.title}
+                        {todo.description}
                     </TableCell>
                     <TableCell>
                         {todo.score}
                     </TableCell>
                     <TableCell>
-                        {todo.name}
+                        {todo.owner}
                     </TableCell>
                     <TableCell>
                         {todo.expiresAt ? todo.expiresAt.toLocaleDateString() : "No deadline"}
@@ -97,11 +101,11 @@ async function TodosTable() {
                                 <DropdownMenuSeparator/>
                                 <ActiveToggleDropdownItem
                                     id={todo.id}
-                                    isAvailableForPurchase={todo.completed}
+                                    completed={todo.completed}
                                 />                                
                                 <DeleteDropdownItem 
                                     id={todo.id}
-                                    disabled={!todo.completed}
+                                    disabled={false}
                                 />
                             </DropdownMenuContent>
                         </DropdownMenu>                        

@@ -6,8 +6,8 @@ const prisma = new PrismaClient()
 async function main() {
   const todos = [
     { title: 'Buy groceries', completed: false },
-    { title: 'Walk the dog', completed: false },
-    { title: 'Finish project', completed: true },
+    { title: 'Walk the dog', completed: false, description: "This is a short description" },
+    { title: 'Finish project', completed: true , score: 82 },
     { title: 'Call the plumber', completed: false },
     { title: 'Read a book', completed: true },
     { title: 'Send email to boss', completed: false, score: 10 },

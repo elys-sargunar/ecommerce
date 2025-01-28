@@ -62,8 +62,9 @@ model Venue {
 
 model Todo {
   id        String      @id @default(uuid())
-  name      String?
-  title     String
+  title      String
+  description     String?
+  owner String?
   completed Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

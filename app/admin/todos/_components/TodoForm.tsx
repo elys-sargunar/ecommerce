@@ -6,13 +6,13 @@ import { useState } from "react"
 import { formatCurrency } from "@/lib/formatters"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
-import { addProduct, updateProduct } from "../../_actions/products"
+import { addTodo, updateTodo } from "../../_actions/todos"
 import { useFormState, useFormStatus } from "react-dom"
-import { Product } from "@prisma/client"
+import { Todo } from "@prisma/client"
 import Image from "next/image"
 
-export function ProductForm({ product }: {product?: Product | null}) {    
-    const [error, action] = useFormState(product == null ? addProduct : updateProduct.bind(null, product.id), {})
+export function ToDoForm({ product }: {product?: Product | null}) {    
+    const [error, action] = useFormState(product == null ? addTodo : updateTodo.bind(null, product.id), {})
     const [priceInPence, setPriceInPence] = useState<number | undefined>(product?.priceInPence)
 
     return <form action={action} className="space-y-8">

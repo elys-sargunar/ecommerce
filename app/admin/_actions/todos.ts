@@ -4,6 +4,7 @@ import { z } from "zod"
 import db from "@/db/db"
 import { notFound, redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
+import { todo } from "node:test"
 
 const addSchema = z.object({    
     title : z.string().min(1),
@@ -68,9 +69,9 @@ export async function updateTodo(id: string, prevState: unknown, formData: FormD
     }
     
     const data = result.data
-    const product = await db.todo.findUnique({where: {id}})
+    const todo = await db.todo.findUnique({where: {id}})
 
-    if(product == null) return notFound()
+    if(todo == null) return notFound()
 
     await db.todo.update({ 
         where: {id},
